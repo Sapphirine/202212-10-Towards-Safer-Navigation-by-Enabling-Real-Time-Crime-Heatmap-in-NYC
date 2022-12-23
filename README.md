@@ -5,6 +5,7 @@ This repository is the source code for the class project of EE6893 Big Data at C
 
 This project is aiming to integrate crime prediction heatmap on navigation platforms. By integrating a crime heatmap with a navigation system, users can be informed to potential threats in real-time. This is helpful for travelers or persons who are alone at night. A heatmap-based crime prediction and navigation system can help individuals feel safer and more secure in a city or neighborhood.
 
+Group Members: Kaiyuan Hou (kh3119), Yanchen Liu (yl4189)
 
 ## Setup environment
 * Create virtual environment with conda\
