@@ -1,0 +1,60 @@
+<h4 class="text-center">Personal Information</h4>
+<form id="user_profile_form">
+    <div class="form-group m-2">
+        <label for="ageGroup">Age Group</label>
+        <select class="form-control" id="ageGroup" name="ageGroup">
+            <option>&lt;18</option>
+            <option>18-24</option>
+            <option>25-44</option>
+            <option>45-64</option>
+            <option>65+</option>
+        </select>
+    </div>
+    <div class="form-group m-2">
+        <label for="race">Race</label>
+        <select class="form-control" id="race" name="race">
+            <option>Black</option>
+            <option>White</option>
+            <option>White Hispanic</option>
+            <option>Black Hispanic</option>
+            <option>Asian / Pacific Islander</option>
+            <option>American Indian/Alaskan Native</option>
+        </select>
+    </div>
+    <div class="form-group m-2">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender" name="gender">
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary m-2">Refresh Heatmap</button>
+</form>
+
+<script>
+    const thisForm = document.getElementById('user_profile_form');
+    thisForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var selectGroup = $('.form-group select');
+        var user = selectGroup.serializeArray();
+        var loginFormObject = {};
+        for (var i = user.length - 1; i >= 0; i--) {
+            var name = user[i].name;
+            var value = user[i].value;
+            loginFormObject[name] = value;
+        }
+        loginFormObject = JSON.stringify(loginFormObject);
+        console.log(loginFormObject);
+
+        {#debugger;#}
+        const response = await fetch('/refresh_heatmap', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            {#body: JSON.stringify(Object.fromEntries(formData))#}
+            body: loginFormObject
+        });
+
+        {#const result = await response.json();#}
+        {#console.log(result)#}
+    });
+</script>
